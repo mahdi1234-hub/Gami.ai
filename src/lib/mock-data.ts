@@ -1,0 +1,198 @@
+import type { Campaign, Player, GameSession, Reward, LeaderboardEntry, TeamMember, FunnelStep, CampaignStats } from './types'
+
+export const mockCampaigns: Campaign[] = [
+  {
+    id: 'camp_001',
+    tenantId: 'ten_001',
+    name: 'Summer Spin & Win',
+    description: 'Spin the wheel for amazing summer discounts!',
+    gameType: 'spin-wheel',
+    status: 'active',
+    config: {
+      gameType: 'spin-wheel',
+      tenant: { brandName: 'Gami Demo', logoUrl: '', primaryColor: '#F47B20', secondaryColor: '#FFFFFF' },
+      campaign: { id: 'camp_001', title: 'Summer Spin & Win', duration: 30, winCondition: { type: 'always', threshold: 0 } },
+      reward: { type: 'coupon', code: 'SUMMER20', displayText: '20% off your next purchase' },
+      collectEmail: true,
+      leaderboardEnabled: false,
+      maxPlaysPerUser: 1,
+      difficulty: 'easy',
+    },
+    startAt: '2026-04-01T00:00:00Z',
+    endAt: '2026-06-30T23:59:59Z',
+    createdAt: '2026-03-25T10:00:00Z',
+    updatedAt: '2026-04-01T10:00:00Z',
+    stats: { totalSessions: 12450, uniquePlayers: 8320, avgScore: 750, conversionRate: 34.5, totalRewardsIssued: 2870, avgDuration: 28 },
+  },
+  {
+    id: 'camp_002',
+    tenantId: 'ten_001',
+    name: 'Match & Save Challenge',
+    description: 'Match tiles to unlock exclusive deals',
+    gameType: 'match-3',
+    status: 'active',
+    config: {
+      gameType: 'match-3',
+      tenant: { brandName: 'Gami Demo', logoUrl: '', primaryColor: '#2563EB', secondaryColor: '#FFFFFF' },
+      campaign: { id: 'camp_002', title: 'Match & Save', duration: 90, winCondition: { type: 'score', threshold: 500 } },
+      reward: { type: 'coupon', code: 'MATCH15', displayText: '15% off selected items' },
+      collectEmail: true,
+      leaderboardEnabled: true,
+      maxPlaysPerUser: 3,
+      difficulty: 'medium',
+    },
+    startAt: '2026-04-10T00:00:00Z',
+    endAt: '2026-05-10T23:59:59Z',
+    createdAt: '2026-04-05T10:00:00Z',
+    updatedAt: '2026-04-10T10:00:00Z',
+    stats: { totalSessions: 5680, uniquePlayers: 3240, avgScore: 425, conversionRate: 22.8, totalRewardsIssued: 738, avgDuration: 75 },
+  },
+  {
+    id: 'camp_003',
+    tenantId: 'ten_001',
+    name: 'Bubble Pop Bonanza',
+    description: 'Pop bubbles and win prizes!',
+    gameType: 'bubble-shooter',
+    status: 'draft',
+    config: {
+      gameType: 'bubble-shooter',
+      tenant: { brandName: 'Gami Demo', logoUrl: '', primaryColor: '#7C3AED', secondaryColor: '#FFFFFF' },
+      campaign: { id: 'camp_003', title: 'Bubble Pop Bonanza', duration: 60, winCondition: { type: 'score', threshold: 300 } },
+      reward: { type: 'freebie', code: 'FREESHIP', displayText: 'Free shipping on your next order' },
+      collectEmail: true,
+      leaderboardEnabled: false,
+      maxPlaysPerUser: 2,
+      difficulty: 'easy',
+    },
+    startAt: '',
+    endAt: '',
+    createdAt: '2026-04-20T10:00:00Z',
+    updatedAt: '2026-04-20T10:00:00Z',
+  },
+  {
+    id: 'camp_004',
+    tenantId: 'ten_001',
+    name: 'Scratch & Discover',
+    description: 'Scratch the card to reveal your prize',
+    gameType: 'scratch-card',
+    status: 'ended',
+    config: {
+      gameType: 'scratch-card',
+      tenant: { brandName: 'Gami Demo', logoUrl: '', primaryColor: '#D97706', secondaryColor: '#FFFFFF' },
+      campaign: { id: 'camp_004', title: 'Scratch & Discover', duration: 15, winCondition: { type: 'always', threshold: 0 } },
+      reward: { type: 'coupon', code: 'SCRATCH10', displayText: '10% off everything' },
+      collectEmail: false,
+      leaderboardEnabled: false,
+      maxPlaysPerUser: 1,
+      difficulty: 'easy',
+    },
+    startAt: '2026-03-01T00:00:00Z',
+    endAt: '2026-03-31T23:59:59Z',
+    createdAt: '2026-02-25T10:00:00Z',
+    updatedAt: '2026-04-01T10:00:00Z',
+    stats: { totalSessions: 28900, uniquePlayers: 22100, avgScore: 100, conversionRate: 45.2, totalRewardsIssued: 9989, avgDuration: 12 },
+  },
+  {
+    id: 'camp_005',
+    tenantId: 'ten_001',
+    name: 'Target Practice Tournament',
+    description: 'Compete for the top spot on the leaderboard!',
+    gameType: 'shooting-range',
+    status: 'active',
+    config: {
+      gameType: 'shooting-range',
+      tenant: { brandName: 'Gami Demo', logoUrl: '', primaryColor: '#DC2626', secondaryColor: '#FFFFFF' },
+      campaign: { id: 'camp_005', title: 'Target Practice', duration: 60, winCondition: { type: 'score', threshold: 800 } },
+      reward: { type: 'custom', code: 'CHAMPION', displayText: 'Grand prize: $500 gift card' },
+      collectEmail: true,
+      leaderboardEnabled: true,
+      maxPlaysPerUser: 5,
+      difficulty: 'hard',
+    },
+    startAt: '2026-04-15T00:00:00Z',
+    endAt: '2026-05-15T23:59:59Z',
+    createdAt: '2026-04-10T10:00:00Z',
+    updatedAt: '2026-04-15T10:00:00Z',
+    stats: { totalSessions: 3420, uniquePlayers: 1580, avgScore: 620, conversionRate: 12.5, totalRewardsIssued: 198, avgDuration: 55 },
+  },
+]
+
+export const mockPlayers: Player[] = [
+  { id: 'ply_001', email: 'alex@example.com', name: 'Alex Johnson', campaignId: 'camp_001', sessionsPlayed: 3, bestScore: 950, rewardIssued: true, createdAt: '2026-04-02T10:00:00Z' },
+  { id: 'ply_002', email: 'sarah@example.com', name: 'Sarah Chen', campaignId: 'camp_001', sessionsPlayed: 1, bestScore: 820, rewardIssued: true, createdAt: '2026-04-03T14:30:00Z' },
+  { id: 'ply_003', email: 'mike@example.com', name: 'Mike Torres', campaignId: 'camp_002', sessionsPlayed: 5, bestScore: 1250, rewardIssued: true, createdAt: '2026-04-11T09:15:00Z' },
+  { id: 'ply_004', email: 'emma@example.com', name: 'Emma Wilson', campaignId: 'camp_001', sessionsPlayed: 2, bestScore: 680, rewardIssued: false, createdAt: '2026-04-05T16:45:00Z' },
+  { id: 'ply_005', email: 'james@example.com', name: 'James Park', campaignId: 'camp_005', sessionsPlayed: 4, bestScore: 1100, rewardIssued: true, createdAt: '2026-04-16T11:20:00Z' },
+  { id: 'ply_006', email: 'lisa@example.com', name: 'Lisa Brown', campaignId: 'camp_002', sessionsPlayed: 2, bestScore: 890, rewardIssued: true, createdAt: '2026-04-12T08:00:00Z' },
+  { id: 'ply_007', email: 'david@example.com', name: 'David Kim', campaignId: 'camp_001', sessionsPlayed: 1, bestScore: 750, rewardIssued: true, createdAt: '2026-04-07T13:10:00Z' },
+  { id: 'ply_008', email: 'nina@example.com', name: 'Nina Patel', campaignId: 'camp_005', sessionsPlayed: 3, bestScore: 980, rewardIssued: false, createdAt: '2026-04-17T15:30:00Z' },
+]
+
+export const mockLeaderboard: LeaderboardEntry[] = [
+  { rank: 1, playerId: 'ply_003', playerName: 'Mike Torres', playerEmail: 'mike@example.com', score: 1250, updatedAt: '2026-04-20T10:00:00Z' },
+  { rank: 2, playerId: 'ply_005', playerName: 'James Park', playerEmail: 'james@example.com', score: 1100, updatedAt: '2026-04-19T15:30:00Z' },
+  { rank: 3, playerId: 'ply_008', playerName: 'Nina Patel', playerEmail: 'nina@example.com', score: 980, updatedAt: '2026-04-18T11:20:00Z' },
+  { rank: 4, playerId: 'ply_001', playerName: 'Alex Johnson', playerEmail: 'alex@example.com', score: 950, updatedAt: '2026-04-17T09:15:00Z' },
+  { rank: 5, playerId: 'ply_006', playerName: 'Lisa Brown', playerEmail: 'lisa@example.com', score: 890, updatedAt: '2026-04-16T14:00:00Z' },
+  { rank: 6, playerId: 'ply_002', playerName: 'Sarah Chen', playerEmail: 'sarah@example.com', score: 820, updatedAt: '2026-04-15T16:45:00Z' },
+  { rank: 7, playerId: 'ply_007', playerName: 'David Kim', playerEmail: 'david@example.com', score: 750, updatedAt: '2026-04-14T08:30:00Z' },
+  { rank: 8, playerId: 'ply_004', playerName: 'Emma Wilson', playerEmail: 'emma@example.com', score: 680, updatedAt: '2026-04-13T12:00:00Z' },
+]
+
+export const mockRewards: Reward[] = [
+  { id: 'rwd_001', campaignId: 'camp_001', type: 'coupon', code: 'SUMMER20', issuedToPlayerId: 'ply_001', issuedAt: '2026-04-02T10:05:00Z', redeemedAt: '2026-04-03T14:00:00Z', status: 'redeemed' },
+  { id: 'rwd_002', campaignId: 'camp_001', type: 'coupon', code: 'SUMMER20', issuedToPlayerId: 'ply_002', issuedAt: '2026-04-03T14:35:00Z', redeemedAt: null, status: 'issued' },
+  { id: 'rwd_003', campaignId: 'camp_002', type: 'coupon', code: 'MATCH15', issuedToPlayerId: 'ply_003', issuedAt: '2026-04-11T09:20:00Z', redeemedAt: '2026-04-12T10:00:00Z', status: 'redeemed' },
+  { id: 'rwd_004', campaignId: 'camp_001', type: 'coupon', code: 'SUMMER20', issuedToPlayerId: null, issuedAt: null, redeemedAt: null, status: 'available' },
+  { id: 'rwd_005', campaignId: 'camp_005', type: 'custom', code: 'CHAMPION', issuedToPlayerId: 'ply_005', issuedAt: '2026-04-16T11:25:00Z', redeemedAt: null, status: 'issued' },
+]
+
+export const mockTeamMembers: TeamMember[] = [
+  { id: 'tm_001', userId: 'usr_001', tenantId: 'ten_001', role: 'owner', user: { id: 'usr_001', email: 'owner@gami.ai', name: 'Platform Owner', role: 'owner', createdAt: '2026-01-01T00:00:00Z' }, invitedAt: '2026-01-01T00:00:00Z', joinedAt: '2026-01-01T00:00:00Z' },
+  { id: 'tm_002', userId: 'usr_002', tenantId: 'ten_001', role: 'admin', user: { id: 'usr_002', email: 'admin@gami.ai', name: 'Admin User', role: 'admin', createdAt: '2026-02-01T00:00:00Z' }, invitedAt: '2026-02-01T00:00:00Z', joinedAt: '2026-02-02T00:00:00Z' },
+  { id: 'tm_003', userId: 'usr_003', tenantId: 'ten_001', role: 'member', user: { id: 'usr_003', email: 'member@gami.ai', name: 'Team Member', role: 'member', createdAt: '2026-03-01T00:00:00Z' }, invitedAt: '2026-03-01T00:00:00Z', joinedAt: '2026-03-05T00:00:00Z' },
+]
+
+export const mockFunnel: FunnelStep[] = [
+  { name: 'Page View', count: 25000, percentage: 100 },
+  { name: 'Game Started', count: 18500, percentage: 74 },
+  { name: 'Game Completed', count: 12450, percentage: 49.8 },
+  { name: 'Reward Shown', count: 8320, percentage: 33.3 },
+  { name: 'Email Captured', count: 6200, percentage: 24.8 },
+  { name: 'Reward Redeemed', count: 2870, percentage: 11.5 },
+]
+
+export const mockSessionsOverTime = [
+  { date: 'Apr 1', sessions: 320, players: 280 },
+  { date: 'Apr 2', sessions: 450, players: 390 },
+  { date: 'Apr 3', sessions: 380, players: 340 },
+  { date: 'Apr 4', sessions: 520, players: 460 },
+  { date: 'Apr 5', sessions: 680, players: 580 },
+  { date: 'Apr 6', sessions: 890, players: 720 },
+  { date: 'Apr 7', sessions: 1100, players: 850 },
+  { date: 'Apr 8', sessions: 950, players: 780 },
+  { date: 'Apr 9', sessions: 1200, players: 920 },
+  { date: 'Apr 10', sessions: 1450, players: 1100 },
+  { date: 'Apr 11', sessions: 1300, players: 1000 },
+  { date: 'Apr 12', sessions: 1150, players: 900 },
+  { date: 'Apr 13', sessions: 980, players: 790 },
+  { date: 'Apr 14', sessions: 1080, players: 860 },
+]
+
+export const mockScoreDistribution = [
+  { range: '0-100', count: 1200 },
+  { range: '101-300', count: 3400 },
+  { range: '301-500', count: 4200 },
+  { range: '501-700', count: 2100 },
+  { range: '701-900', count: 1050 },
+  { range: '901+', count: 500 },
+]
+
+export const mockOverallStats: CampaignStats = {
+  totalSessions: 50450,
+  uniquePlayers: 35240,
+  avgScore: 485,
+  conversionRate: 28.4,
+  totalRewardsIssued: 13795,
+  avgDuration: 42,
+}
