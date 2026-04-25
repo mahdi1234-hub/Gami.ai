@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { GAME_TYPES } from '../../lib/constants'
 import { ALL_CAMPAIGNS } from '../../lib/game-registry'
 import { mockCampaigns } from '../../lib/mock-data'
-import { SpinWheel, ScratchCard, Match3Game, MemoryMatch, BubbleShooter, ShootingRange, SnakeGame, WhackAMole, SlotMachine, BrickBreaker, FruitCatcher } from '../../games'
+import { SpinWheel, ScratchCard, Match3Game, MemoryMatch, BubbleShooter, ShootingRange, SnakeGame, WhackAMole, SlotMachine, BrickBreaker, FruitCatcher, ShadowFight } from '../../games'
 import { RotateCcw, Volume2, VolumeX, Copy } from 'lucide-react'
 import { toast } from 'sonner'
 
@@ -110,6 +110,8 @@ export function GamePreviewPage() {
         return <BrickBreaker {...gameProps} />
       case 'fruit-catcher':
         return <FruitCatcher {...gameProps} />
+      case 'shadow-fight':
+        return <ShadowFight {...gameProps} />
       default:
         return <SpinWheel primaryColor={primaryColor} onComplete={handleGameComplete} prizes={['20% OFF', 'Free Ship', 'Try Again', '50% OFF']} />
     }
