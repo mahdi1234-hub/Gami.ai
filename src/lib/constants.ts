@@ -22,12 +22,12 @@ export const GAME_TYPES = [
   },
   {
     id: 'draw-line',
-    name: 'Draw a Line',
-    description: 'Trace the path to connect the dots. Creative and engaging.',
-    icon: '✏️',
+    name: 'Memory Match',
+    description: 'Flip cards and find matching pairs. Test your memory!',
+    icon: '🃏',
     color: '#059669',
     difficulty: 'Easy',
-    avgDuration: '45s',
+    avgDuration: '60s',
   },
   {
     id: 'shooting-range',

@@ -1,0 +1,6 @@
+export { SpinWheel } from './SpinWheel'
+export { ScratchCard } from './ScratchCard'
+export { Match3Game } from './Match3Game'
+export { MemoryMatch } from './MemoryMatch'
+export { BubbleShooter } from './BubbleShooter'
+export { ShootingRange } from './ShootingRange'
